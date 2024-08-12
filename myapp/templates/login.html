@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #6495ED; /* Cornflower Blue */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #sign2 {
+            background-color: #000; /* Black */
+            color: #fff; /* White */
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #sign2 h1 {
+            margin: 0;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.5); /* Transparent White */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto; /* Center the form horizontally */
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            background-color: #90EE90; /* Light Green */
+            color: #fff; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #7CCD7C; /* Darker Green */
+        }
+
+        form button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            background-color: lightcoral; /* Light Blue */
+            color: #fff; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #ADD8E6; /* Darker Blue */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff; /* White */
+        }
+    </style>
+</head>
+<body>
+    <div id="sign2">
+        <h1>LIBRARY MANAGEMENT SYSTEM</h1>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="login">
+        <button><a href="{% url 'signup' %}">signup</a></button>
+    </form>
+</body>
+</html>

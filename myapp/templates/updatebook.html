@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6495ED; /* Cornflower Blue */
+        }
+
+        #upd {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="upd"><h1>BOOK MANAGEMENT SYSTEM</h1></div>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Update Book Details</h2>
+        <label for="book_id">Book ID:</label><br>
+        <input type="text" id="book_id" name="book_id" value="{{ book.pk }}" readonly><br>
+        <label for="book_name">Description:</label><br>
+        <input type="text" id="book_name" name="book_name" value="{{ book.book_name }}"><br>
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" value="{{ book.subject }}"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" value="{{ book.author }}"><br><br>
+        <label for="quantity">QUANTITY</label><br>
+        <input type="number" id="quantity" name="quantity" value="{{book.quantity}}">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

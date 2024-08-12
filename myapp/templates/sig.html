@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff5733, #005bea, #00c6fb, #00fffb);
+        }
+
+        #sign {
+            background-color: black;
+            color: azure;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"],
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .message {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .error {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="sign"><h1>LIBRARY MANAGEMENT SYSTEM</h1></div>
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+        
+        {% for i in form %}
+        {{ i.label_tag }} <br>
+        {{ i }}<br>
+        {{ i.errors | striptags }}
+        {% endfor %}
+        <input type="submit" value="SIGNUP">
+        <div class="message-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <span class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button><a href="{% url 'login' %}">login</a></button>
+    </form>
+   
+</body>
+</html>

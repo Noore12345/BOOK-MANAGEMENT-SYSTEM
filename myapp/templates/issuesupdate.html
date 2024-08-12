@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        BOOK_ID <input type="number" name="book_id" value="{{ data.book_id}}"><br><br>
+        MEMBER_ID <input type="number" name="member_id" value="{{ data.member_id}}"><br><br>
+        ISSUSID <input type="number" name="issusID" value="{{ data.pk }}"><br><br>
+        ISSUESDATE <input type="date" name="issuesdate" value="{{data.issuesdate}}"><br><br>
+        RETURNDATE <input type="date" name="returndate" value="{{data.returndate}}"><br><br>
+        <input type="submit" value="update">
+    </form>
+</body>
+</html>

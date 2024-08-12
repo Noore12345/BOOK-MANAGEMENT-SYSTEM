@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6495ED; /* Cornflower Blue */
+        }
+
+        #issues {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        #issues button{
+            background-color: aquamarine;
+            font-size: 25px;
+            
+        }
+        h1 {
+            margin: 0;
+        }
+
+        table {
+            width: 50%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 300px; 
+            overflow-y: auto; 
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div id="issues"><h1>LIBRARY MANAGEMENT SYSTEM</h1>
+        <button ><a href="/index/">Home</a></button>
+    </div>
+    
+    <table id="table2">
+        <h1>ISSUES BOOK</h1>
+        <input type="text" placeholder="Search..." style="font-size: 25px;" id="search2" onkeyup="myFun1()">
+        <tr>
+            <th>BOOK ID</th>
+            <th>MEMBER ID</th>
+            <th>ISSUES ID</th>
+            <th>ISSUES DATE</th>
+            <th>RETURN DATE</th>
+        </tr>
+        {% for i in data1 %}
+        <tr>
+            <td>{{i.book_id}}</td>
+            <td>{{i.Member_id}}</td>
+            <td>{{i.issusID}}</td>
+            <td>{{i.issudate}}</td>
+            <td>{{i.returndate}}</td>
+           <td> <a href="{% url 'deleteissues' i.issusID %}">Delete</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+     function myFun1(){
+        let filter=document.getElementById('search2').value.toUpperCase();
+        let table=document.getElementById('table2');
+        let tr=table.getElementsByTagName('tr');
+
+        for( var i=0; i<tr.length; i++){
+            let td=tr[i].getElementsByTagName('td')[2];
+            if(td){
+                let text=td.textContent || td.innerHTML;
+                if(text.toUpperCase().indexOf(filter)>-1){
+                    tr[i].style.display=""
+                }else{
+                    tr[i].style.display="none"
+                }
+            }
+        }
+     }
+    </script>
+</body>
+</html>

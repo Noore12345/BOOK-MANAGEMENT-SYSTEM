@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #6495ED; /* Cornflower Blue */
+        }
+
+        #seeall {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        #seeall button{
+            background-color: aqua;
+            font-size: 25px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td button {
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        td button:hover {
+            background-color: #0056b3;
+        }
+
+        td a {
+            text-decoration: none;
+            color: blue;
+        }
+
+        td a:focus {
+            outline: none;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="seeall"><h1>BOOK MANAGEMENT SYSTEM</h1>
+        <button><a href="/index/">HOME</a></button>
+    </div>
+   
+    <table id="mytable">
+        <h1>SEE ALL BOOK</h1>
+        <input type="text" placeholder="Search..." style="font-size: 25px;" id="search" onkeyup="searchFun()">
+        <tr >
+            <th>Book id</th>
+            <th>Book Description</th>
+            <th>Book Subject</th>
+            <th>Author</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Issues</th>
+        </tr>
+        {% for i in data1 %}
+        <tr>
+            <td>{{i.book_id}}</td>
+            <td>{{i.book_name}}</td>
+            <td>{{i.subject}}</td>
+            <td>{{i.author}}</td>
+            <td>{{i.quantity}}</td>
+            <td><button id="bt1"><a href="{% url 'deletebook' i.book_id%}" style="color: white;">delete</a></button></td>
+            <td><button id="bt2"><a href="{% url 'update' i.book_id%}" style="color: white;">update</a></button></td>
+            <td><button id="bt3"><a href="{% url 'issues' %}" style="color: white;">Issues</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function searchFun(){
+            let filter=document.getElementById('search').value.toUpperCase();
+
+            let mytable=document.getElementById('mytable');
+            let tr=mytable.getElementsByTagName('tr');
+            for( var i=0; i<tr.length; i++){
+                let td=tr[i].getElementsByTagName('td')[2];
+                if(td){
+                    let textValue=td.textContent || td.innerHTML;
+                    if(textValue.toUpperCase().indexOf(filter) > -1 ){
+                        tr[i].style.display="";
+                    }else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

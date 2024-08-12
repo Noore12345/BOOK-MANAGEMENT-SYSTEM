@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: beige;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            text-align: center;
+        }
+        div {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+            margin: 0;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        
+        
+        button:hover {
+            animation: scale 0.3s infinite alternate;
+        }
+        /* Book Picture */
+        #bookPic {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px; /* Adjust size as needed */
+            animation: moveBook 10s infinite alternate;
+        }
+        
+        
+        /* Student Picture */
+        #studentPic {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px; /* Adjust size as needed */
+            animation: moveStudent 10s infinite alternate;
+        }
+        
+    </style>
+</head>
+<body>
+    <div><h1>LIBRARY MANAGEMENT SYSTEM</h1></div>
+    <button><a href="/seeallbook/">SEEALLBOOK</a></button>
+    <button><a href="{% url 'h'%}">ADDBOOK</a></button>
+    <button><a href="/member/">SEEALLMEMBER</a></button>
+    <button><a href="{% url 'home'%}">ADDMEMBER</a></button>
+    <button><a href="/all/">ISSUESBOOK</a></button>
+    <button><a href="{%url 'logout'%}">logout</a></button>
+
+</body>
+</html>

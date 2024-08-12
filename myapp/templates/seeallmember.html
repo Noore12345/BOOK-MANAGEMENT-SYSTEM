@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6495ED; /* Cornflower Blue */
+        }
+
+        #mem1 {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            z-index: 1;
+        }
+        #mem1 button{
+            background-color: aqua;
+            font-size: 25px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        table {
+            width: 50%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #btm1, #btm2 {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+        }
+
+        #btm1:hover, #btm2:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        #btm1 a, #btm2 a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="mem1"><h1>LIBRARY MANAGEMENT SYSTEM</h1>
+    <button><a href="/index/">HOME</a></button>
+    </div>
+    <table id="table1">
+    
+        <h1>SEE ALL MEMBER</h1>
+        <input type="text" placeholder="Search..." id="search1" onkeyup="myFunc()" style="font-size: 25px;">
+        <tr>
+            <th>MEMBER ID</th>
+            <th>MEMBER NAME</th>
+            <th>MOBILE NUMBER</th>
+            <th>SEMESTER</th>
+            <th>BRANCH</th>
+            <th colspan="2">ACTIONS</th>
+        </tr>
+        {% for i in datalist %}
+        <tr>
+            <td>{{i.member_id}}</td>
+            <td>{{i.member_name}}</td>
+            <td>{{i.mobile}}</td>
+            <td>{{i.semester}}</td>
+            <td>{{i.branch}}</td>
+            <td><button id="btm1"><a href="{% url 'deletemember' i.member_id %}">delete</a></button></td>
+            <td><button id="btm2"><a href="{% url 'updatemember' i.member_id%}">update</a></button></td>
+        </tr>
+        {%  endfor %}
+    </table>
+    <script>
+      function myFunc() {
+    let filter = document.getElementById('search1').value.toUpperCase();
+    let table = document.getElementById('table1');
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[1];
+        if (td) {
+            let textValue = td.textContent || td.innerHTML;
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = '';
+            } else {
+                tr[i].style.display = 'none';
+            }
+        }
+    }
+}
+
+    </script>
+</body>
+</html>
